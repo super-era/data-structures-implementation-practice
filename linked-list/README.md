@@ -1,6 +1,8 @@
 # linked-list
+(branch LL_bi)
 
-This project is an implementation of an integer-data uni-directional linked-list data structure.
+This project is an implementation of an integer-data bidirectional linked-list data structure.
+For the unidirectional implementation, look at the main branch.
 
 Methods include:
 - adding nodes
@@ -12,6 +14,5 @@ Methods include:
 
 # Ideas for future implementation
 
-- implement a bi-directional linked list
 - use binary search in removeNodeByData()
 - develop a graphical representation of linked-list operations with javax.swing
