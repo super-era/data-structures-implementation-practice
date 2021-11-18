@@ -1,16 +1,20 @@
 public class Node {
     private int data;
+    // bi-directional pointers
+    private Node prev;
     private Node next;
 
     // basic constructor
     public Node() {
         this.data = 0;
+        this.prev = null;
         this.next = null;
     }
 
     // parametric constructor
     public Node(int data) {
         this.data = data;
+        this.prev = null;
         this.next = null;
     }
 
@@ -32,6 +36,10 @@ public class Node {
         return this.next;
     }
 
+    public Node getPrev() {
+        return this.prev;
+    }
+
     // mutators
 
     public void setData(int newData) {
@@ -40,5 +48,9 @@ public class Node {
 
     public void setNext(Node newNext) {
         this.next = newNext;
+    }
+
+    public void setPrev(Node newPrev) {
+        this.prev = newPrev;
     }
 } 

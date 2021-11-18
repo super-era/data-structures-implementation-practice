@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class LinkedList {
     private Node head;
+    private Node tail;      // bidirectional linked list
 
     // basic constructor
     public LinkedList() {
@@ -16,6 +17,7 @@ public class LinkedList {
         Random random = new Random();
         this.head = new Node(random.nextInt(20));
         Node current = this.head;
+        Node prev = null;
         ArrayList<Integer> tempArr = new ArrayList<Integer>();
         for (int i = 0; i < numNodes - 1; i++) {
             int data = random.nextInt(20);
@@ -25,9 +27,12 @@ public class LinkedList {
                 }
                 tempArr.add(data);
             }
-            current.setNext(new Node(data));
+            Node newNode = new Node(data);
+            current.setNext(newNode);
+            newNode.setPrev(current);
             current = current.getNext();
         }
+        current = this.tail;
     }
 
     // methods
@@ -35,8 +40,9 @@ public class LinkedList {
     // add new Node to LinkedList
     public void addNode(int newData) {
         Node newNode = new Node(newData);
-        if (this.head == null) {
+        if (this.head == null && this.tail == null) {
             this.head = newNode;
+            this.tail = newNode;
         } else {
             Node current = this.head;
             while (current.getNext() != null) {
@@ -49,30 +55,36 @@ public class LinkedList {
     // remove and return the last Node in the LinkedList
     public Node removeLastNode() {
         Node removed = null;
-        Node prev = null;
-        if (this.head == null) {
+        if (this.head == null && this.tail == null) {
             System.out.println("This list is empty.");
         } else {
-            Node current = this.head;
-            while (current.getNext() != null) {
-                prev = current;
-                current = current.getNext();
+            if (this.head != this.tail) {
+                removed = this.tail;
+                this.tail = this.tail.getPrev();
+                this.tail.setNext(null);
+            } else {        // this.head = this.tail and there is only one item in the list
+                this.head = null;
+                this.tail = null;
             }
-            removed = current;
-            prev.setNext(null);
-        }
+        } 
         return removed;
     }
 
     // remove and return the first Node in the LinkedList
     public Node removeFirstNode() {
         Node removed = null;
-        if (this.head == null) {
+        if (this.head == null && this.tail == null) {
             System.out.println("This list is empty.");
         } else {
-            removed = this.head;
-            this.head = this.head.getNext();
-        } 
+            if (this.head != this.tail) {
+                removed = this.head;
+                this.head = this.head.getNext();
+                this.head.setPrev(null);
+            } else {        // this.head = this.tail and there is only one item in the list
+                this.head = null;
+                this.tail = null;
+            }
+        }
         return removed;
     }
 
@@ -102,19 +114,18 @@ public class LinkedList {
     public Node removeNodeByData(int data) {
         Node target = null;
         Node current = this.head;
-        Node prev = null;
         int count = 0;
         while (current != null) {
             if (current.getData() == data) {
                 target = current;
                 if (current == this.head) {
                     this.head = this.head.getNext();
+                    this.head.setPrev(null);
                 } else {
-                    prev.setNext(current.getNext());
+                    current.getPrev().setNext(current.getNext());
+                    current.getNext().setPrev(current.getPrev());
                 }
                 count++;
-            } else {
-                prev = current;
             }
             current = current.getNext();
         }
@@ -155,7 +166,6 @@ public class LinkedList {
             }
 
         }
-
         return list;
             
     }
