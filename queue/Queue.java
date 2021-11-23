@@ -1,5 +1,11 @@
 // you can add nodes to the queue, and you can 'enqueue' and 'dequeue' nodes
 
+// future ideas for implementation:
+// ------------------------------------------------------------------
+//  - build a dequeue method that removes and returns the smallest value or the largest value
+//    in the queue
+//  - use java generics
+
 import java.util.Random;
 
 public class Queue {
