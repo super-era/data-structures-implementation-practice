@@ -77,7 +77,8 @@ public class LinkedList {
     }
 
     // find and return a Node in the LinkedList based on data attribute
-    // (uncomment relevant code to display a print statement re: the number of times a particular node appears)
+    // (uncomment/comment relevant code to display/hide a print statement re: the number of times a particular node appears)
+    // (equivalent of a simple linear (iterative) search)
     public Node findNodeByData(int data) {
         Node target = null;
         Node current = this.head;
@@ -95,10 +96,24 @@ public class LinkedList {
         return target;
     }
 
+    // finding and returning a Node in the LinkedList based on data attributes
+    // (using a recursive method as per Skiena (2020))
+    public Node findNodeByDataRec(Node nodeInList, int data) {
+        if (nodeInList == null) {
+            return null;
+        } else {
+            if (nodeInList.getData() == data) {
+                return nodeInList;
+            } else {
+                return findNodeByDataRec(nodeInList.getNext(), data);
+            }
+        }
+    }
+
     // remove and return a Node in the LinkedList by data attribute
     // if multiple nodes with the same data attribute exist, the method will remove all nodes
     // with the same data attribute, but only return the last node with that particular data attribute.
-    // (Uses linear search.)
+    // (Uses linear (iterative) search.)
     public Node removeNodeByData(int data) {
         Node target = null;
         Node current = this.head;

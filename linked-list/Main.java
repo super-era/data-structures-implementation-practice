@@ -19,7 +19,9 @@ public class Main {
 
         System.out.println("------------------------------------------");
 
-        list1.findNodeByData(3);
+        Node x = list1.findNodeByDataRec(list1.getHead(), 3);
+
+        x.printNode();
 
         System.out.println("------------------------------------------");
 
