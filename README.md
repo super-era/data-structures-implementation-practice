@@ -8,5 +8,6 @@ Here, I practice implementing a range of data structures in Java.
 (The bidirectional version is on branch LL_bi, whereas branch 'main' contains the unidirectional version.)
 - Heap - min and max, using an integer array to hold and identify the heap's contents
 - Queue - from-scratch implementation with integer data
+- Stack - from-scratch implementation with integer data
 
 
