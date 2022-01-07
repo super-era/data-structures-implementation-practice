@@ -83,23 +83,49 @@ public class BinarySearchTree<T extends Comparable<T>>{
 		if (this.root == null) {
 			System.out.println("The binary search tree is empty.");
 		} else {
-			printBSTRec(this.root);
+			System.out.print("In-order: ");
+			printBSTRecInorder(this.root);
+			System.out.print("Pre-order: ");
+			printBSTRecPreorder(this.root);
+			System.out.print("Post-order: ");
+			printBSTRecPostorder(this.root);
 		}
 	}
 
-	// recursively prints each node in the tree
-	private void printBSTRec(Node<T> node) {
+	// recursively prints each node in the tree in-order
+	private void printBSTRecInorder(Node<T> node) {
 		String binary_tree = "";
 		if (node == null) {
 			return;
-		} else {
-			printBSTRec(node.getLeft());
-			binary_tree += node.getData() + ", ";
-			System.out.print(binary_tree);
-			printBSTRec(node.getRight());
 		}
-
-	}	
+		printBSTRecInorder(node.getLeft());
+		binary_tree += node.getData() + ", ";
+		System.out.print(binary_tree);
+		printBSTRecInorder(node.getRight());
+	}
+	
+	// recursively prints each node in the tree pre-order
+	private void printBSTRecPreorder(Node<T> node) {
+		String binary_tree = "";
+		if (node == null) {
+			return;
+		}
+		binary_tree += node.getData() + ", ";
+		System.out.print(binary_tree);
+		printBSTRecPreorder(node.getLeft());
+		printBSTRecPreorder(node.getRight());
+	}
+	
+	// recursively prints each node in the tree pre-order
+	private void printBSTRecPostorder(Node<T> node) {
+		if (node == null) {
+			return;
+		}
+		printBSTRecPostorder(node.getLeft());
+		printBSTRecPostorder(node.getRight());
+		System.out.print(node.getData() + ", ");
+	}
+	
 
 	// accessor
 
